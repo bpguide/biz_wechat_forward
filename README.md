@@ -31,11 +31,11 @@
 
 ## 目录说明
 
-- 服务端入口：[src/app.js](/biz_wechat_forward/src/app.js)
-- 代理逻辑：[src/routes/proxy.js](/biz_wechat_forward/src/routes/proxy.js)
-- 鉴权逻辑：[src/middleware/auth.js](/biz_wechat_forward/src/middleware/auth.js)
-- Nginx 示例配置：[deploy/nginx.conf](/biz_wechat_forward/deploy/nginx.conf)
-- 客户端示例：[examples/client.js](/biz_wechat_forward/examples/client.js)
+- 服务端入口：[src/app.js](/src/app.js)
+- 代理逻辑：[src/routes/proxy.js](/src/routes/proxy.js)
+- 鉴权逻辑：[src/middleware/auth.js](/src/middleware/auth.js)
+- Nginx 示例配置：[deploy/nginx.conf](/deploy/nginx.conf)
+- 客户端示例：[examples/client.js](/examples/client.js)
 
 ## 服务端环境配置
 
@@ -206,7 +206,7 @@ sudo apt install -y nginx
 
 ### 2. 放置项目配置
 
-第一次部署时，先不要直接用带证书路径的 HTTPS 配置。应该先使用不依赖证书的启动配置 [deploy/nginx.bootstrap.conf](/biz_wechat_forward/deploy/nginx.bootstrap.conf) 把 Nginx 跑起来。
+第一次部署时，先不要直接用带证书路径的 HTTPS 配置。应该先使用不依赖证书的启动配置 [deploy/nginx.bootstrap.conf](/deploy/nginx.bootstrap.conf) 把 Nginx 跑起来。
 
 先复制启动配置到系统目录：
 
@@ -217,7 +217,7 @@ sudo cp deploy/nginx.bootstrap.conf /etc/nginx/sites-available/biz_wechat_forwar
 sudo ln -s /etc/nginx/sites-available/biz_wechat_forward /etc/nginx/sites-enabled/biz_wechat_forward
 ```
 
-在申请到证书之后，再切换到正式 HTTPS 配置 [deploy/nginx.conf](/biz_wechat_forward/deploy/nginx.conf)。
+在申请到证书之后，再切换到正式 HTTPS 配置 [deploy/nginx.conf](/deploy/nginx.conf)。
 
 正式配置复制方式：
 
@@ -268,7 +268,7 @@ sudo systemctl enable nginx
 
 ### 1. 申请证书
 
-确认域名已经解析到服务器，并且 Nginx 已经用 [deploy/nginx.bootstrap.conf](/biz_wechat_forward/deploy/nginx.bootstrap.conf) 正常启动后执行：
+确认域名已经解析到服务器，并且 Nginx 已经用 [deploy/nginx.bootstrap.conf](/deploy/nginx.bootstrap.conf) 正常启动后执行：
 
 ```bash
 sudo certbot --nginx -d proxy.example.com
@@ -481,11 +481,11 @@ function signBody(timestamp, rawBody, secret) {
 
 如果请求没有 body，`rawBody` 使用空字符串。
 
-完整示例见 [examples/client.js](/biz_wechat_forward/examples/client.js)。
+完整示例见 [examples/client.js](/examples/client.js)。
 
 ### 客户端环境变量
 
-运行 [examples/client.js](/biz_wechat_forward/examples/client.js) 前设置：
+运行 [examples/client.js](/examples/client.js) 前设置：
 
 - `PROXY_BASE_URL=https://proxy.example.com`
 - `PROXY_AUTH_TOKEN=...`
