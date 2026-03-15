@@ -1,0 +1,21 @@
+{
+  "name": "biz-wechat-forward",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A controlled proxy server for forwarding requests to WeCom APIs.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0"
+  }
+}
